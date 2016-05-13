@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+*.egg-info
+*.cpython-32
+*.cpython-32.pyc

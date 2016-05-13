@@ -1,0 +1,5 @@
+<list model="pos.register" colors='{"#cfc":[["state","=","open"]]}'>
+    <field name="name"/>
+    <field name="user_id"/>
+    <field name="state"/>
+</list>

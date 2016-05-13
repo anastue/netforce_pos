@@ -1,0 +1,64 @@
+<div class="row pos-header" id="pos-head" style="background-color:#9b58b5">
+    <div class="col-sm-12">
+        <table class="table pos-table-title">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="pull-right" style="font-size:small;margin-right:13%">
+                            <ul class="nav nav-pills nav-user-menu">
+                              <li role="presentation"><a href="#">Help</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{#if flash.message }}
+    {{#ifeq flash.type "success"}}
+        <div class="alert alert-success" role="alert">
+    {{else}}
+        {{#ifeq flash.type "danger"}}
+            <div class="alert alert-danger" role="alert">
+        {{else}}
+            <div class="alert" role="alert">
+        {{/ifeq}}
+    {{/ifeq}}
+        {{flash.message}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+{{/if}}
+<div class="pos-login">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+        <h1>Welcome To Netforce</h1>
+        <form role="form">
+            {{#if a_db}}
+            {{else}}
+                <div class="form-group">
+                    <label style="text-align:left" for="database">Database:</label>
+                    <select class="form-control" id="select-database">
+                        {{#each dbs}}<option>{{name}}</option>{{/each}}
+                    </select>                    
+                </div>
+            {{/if}}
+            <div class="form-group">
+                <label style="text-align:left" for="user">Name:</label>
+                <input type="text" class="form-control" value="{{user_name}}" id="user">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="" id="remember">Remember me</label>
+                <label class="forget-pass pull-right"><a href="#">Forgot your password?</a></label>
+            </div>
+            <button class="btn btn-lg btn-primary pull-left btn-login">Log in</button>
+        </form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>

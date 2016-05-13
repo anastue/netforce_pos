@@ -1,0 +1,292 @@
+{{#if flash.message }}
+    {{#ifeq flash.type "success"}}
+        <div class="alert alert-success" role="alert">
+    {{else}}
+        {{#ifeq flash.type "danger"}}
+            <div class="alert alert-danger" role="alert">
+        {{else}}
+            <div class="alert" role="alert">
+        {{/ifeq}}
+    {{/ifeq}}
+        {{flash.message}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+{{/if}}
+<div class="row">
+    <div class="col-sm-5">
+        <div class="col-sm-12" style="padding-right:0px;">
+            <div class="input-group" style="padding-top:10px">
+                <input placeholder="Search Product" type="text" name="search-product" class="form-control" style="height:35px;">
+                    <span class="input-group-addon btn btn-search-product" style="cursor:pointer">
+                    <span class="glyphicon glyphicon-search"></span>
+                </input>
+            </div>
+        </div>
+        <div class="col-sm-12" style="margin-top:10px;margin-bottom:15px;height:180px;overflow:auto;">
+            <table class="table table-hover">
+                <thead>
+                    <th style="width:50%">Product</th>
+                    <th style="width:20%;text-align:right">QTY</th>
+                    <th style="text-align:right">Price</th>
+                </thead>
+                <tbody>
+                    {{#if items}}
+                     {{#each items}}
+                         <tr data-id="{{id}}">
+                              <td style="vertical-align:middle">{{name}}</td>
+                              <td><input type="text" name="item_qty" class="form-control" style="text-align:right;background-color:lightblue" value="{{qty}}"></td>
+                              <td style="text-align:right;vertical-align:middle">{{currency price}}</td>
+                              <td class="remove-line" style="text-align:right;width:3%;vertical-align:middle"><span class="glyphicon glyphicon-remove" style="color:red;cursor:pointer" aria-hidden="true"/></td>
+                          </tr>
+                      {{/each}}
+                      {{else}}
+                          <tr><td colspan="3">No sale</td></tr>
+                      {{/if}}
+                </tbody>
+            </table>
+        </div>
+    <!-- summary -->
+    <div class="col-sm-12">
+        <div class="col-sm-6" style="padding-left:0px;">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search-customer" placeholder="Search Customer">
+                    <span class="input-group-addon btn btn-search-customer" style="cursor:pointer">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </input>
+            </div>
+            <table class="table pos-summary">
+                <thead>
+                    <th style="width:40%"></th>
+                    <th style="width:60%"></th>
+                </thead>
+                <tbody id="contact-id" value="{{contact_id}}">
+                    <tr>
+                        <td style="text-align:right"><b>Name</b></td>
+                        <td style="text-align:right" id="contact-name">{{contact_name}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><b>Phone</b></td>
+                        <td style="text-align:right" id="contact-phone">{{contact_phone}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><b>Level</b></td>
+                        <td id="contact-level" style="text-align:right"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><b>Point</b></td>
+                        <td id="contact-point" style="text-align:right"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6" style="padding-left:0px;">
+            <table class="table pos-summary">
+                <thead>
+                    <th style="width:40%"></th>
+                    <th style="width:60%"></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align:right">Subtotal </td>
+                        <td style="text-align:right">{{currency sub_total}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">Tax </td>
+                        <td style="text-align:right">{{currency tax_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;border-bottom: 2px solid #929292;"><strong>TOTAL</strong></td>
+                        <td style="text-align:right;border-bottom: 2px solid #929292;">{{currency total_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td type="text" style="text-align:right;vertical-align: middle;"><strong>TO PAY</strong></td>
+                        <td><input class="form-control" style="text-align:right;" type="text" value="{{to_pay}}" name="to_pay"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">Change</td>
+                        <td style="text-align:right">{{currency change}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--col6-->
+    </div><!--col12-->
+
+    <!-- all button -->
+        <div class="col-sm-12">
+            <button class="btn btn-primary btn-lg"><b>Void</b></button>
+            <button class="btn btn-primary btn-lg"><b>Park</b></button>
+            <!--<button class="btn btn-primary btn-lg"><b>Notes</b></button>-->
+            <button class="btn btn-danger btn-lg"><b>Disc</b></button>
+            {{#if is_pay}}
+                <button class="btn btn-success btn-lg btn-pay-confirm" style="width:40%"><b>Confirm</b></button>
+            {{else}}
+                <button class="btn btn-success btn-lg btn-pay" style="width:40%"><b>Pay</b></button>
+            {{/if}}
+        </div>
+    </div>
+
+    <!-- products -->
+    <div class="col-sm-7" style="padding-top:10px;">
+        <ul class="nav nav-tabs">
+            <li class="active dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu scrollable-menu">
+                    <li data-id="all"><a href="#" class="select-categ" >All Products&nbsp;</a></li>
+                    {{#each all_categs}}
+                        <li data-id="{{categ_id}}" ><a href="#" class="select-categ" >{{categ_name}} &nbsp;<span class="badge">{{total_prod}}</span></a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{#if is_select_categ}}
+                <li><a href="#">{{categ_name}}</a></li>
+                <button type="button" class="btn btn-default btn-md pull-right btn-back"><b>Back</b></button>
+            {{/if}}
+            <nav class="pull-right" style="margin-top:-3%;padding-right:2%">
+                <ul class="pagination">
+                    {{#if is_see_large}}
+                        <li class="active"><a href="#" aria-label="Previous"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></li>
+                        <li class="see-small"><a href="#" aria-label="Previous"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a></li>
+                    {{else}}
+                        <li class="see-large"><a href="#" aria-label="Previous"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></li>
+                        <li class="active"><a href="#" aria-label="Previous"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+        </ul>
+        {{#if is_select_categ}}
+            <!-- Products -->
+            {{#if is_see_large}}
+                <div style="margin-right:5px;height:300px;overflow:auto;">
+                    {{#if products}}
+                        {{#each products}}
+                            <div class="col-xs-6 col-md-3" data-id="{{prod_id}}">
+                                <a href="#" class="thumbnail select-product">
+                                    {{#if prod_img}}
+                                        <img alt="{{prod_code}}, {{prod_name}}" src="/static/db/{{dbname}}/files/{{prod_img}}" style="width:100px;height:100px;"></img>
+                                    {{else}}
+                                        <img alt="{{prod_code}}, {{prod_name}}" src="img/pos.png" style="width:100px;height:100px;"></img>
+                                    {{/if}}
+                                    <span class="label label-default">
+                                        {{prod_code}}, {{prod_name}}
+                                    </span>
+                                </a>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div style="text-align:center">
+                            No product in this category.
+                        </div>
+                    {{/if}}
+                </div>
+            {{else}}
+                <table class="table table-hover">
+                    <thead>
+                        <th>Products</th>
+                        <th>Qty</th>
+                    </thead>
+                    <tbody>
+                        {{#if products}}
+                            {{#each products}}
+                                <tr data-id="{{prod_id}}">
+                                    <td class="select-product">{{prod_code}} {{prod_name}}</td>
+                                    <td class="select-product">1</td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td>No product in this category.</td>
+                            </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            {{/if}}
+        {{else}}
+            <!-- product categories -->
+            {{#if is_see_large}}
+                {{#if prod_categ}}
+                    {{#each prod_categ}}
+                        <div class="col-xs-6 col-md-3" data-id="{{categ_id}}">
+                                <a href="#" class="thumbnail select-categ">
+                                    {{#if categ_img}}
+                                        <img alt="{{categ_name}}" src="/static/db/{{../../dbname}}/files/{{categ_img}}" style="width:100px;height:100px;"></img>
+                                    {{else}}
+                                        <img alt="{{categ_name}}" src="img/pos.png" style="width:100px;height:100px;"></img>
+                                    {{/if}}
+                                    <span>
+                                        {{categ_name}} <span class="badge">{{total_prod}}</span>
+                                    </span>
+                                </a>
+                            </span>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <span style="text-align:center"> No Category </span>
+                {{/if}}
+            {{else}}
+                <table class="table table-hover">
+                    <thead>
+                        <th>Category</th>
+                        <th style="text-align:center">Product in Category</th>
+                    </thead>
+                    <tbody>
+                        {{#if prod_categ}}
+                            {{#each prod_categ}}
+                                <tr data-id="{{categ_id}}">
+                                    <td class="select-categ-tr">{{categ_name}}</td>
+                                    <td class="select-categ-tr" style="text-align:center">{{total_prod}}</td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                No Category
+                            </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            {{/if}}
+        {{/if}}
+    </div>
+
+    <!-- pagination -->
+    <div class="footer" style="text-align:center">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+        {{#if is_select_categ}}
+            <nav>
+                <ul class="pagination">
+                    <li class="nav-first-product"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    {{#each nav_products}}
+                        {{#if current}}
+                            <li class="active nav-select-product"><a href="#">{{number}}<span class="sr-only"></span></a></li>
+                        {{else}}
+                            <li class="nav-select-product"><a href="#">{{number}}<span class="sr-only"></span></a></li>
+                        {{/if}}
+                    {{/each}}
+                    <li class="nav-last-product"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </nav>
+        {{else}}
+            <nav>
+                <ul class="pagination">
+                    <li class="nav-first-categ"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    {{#each nav_categs}}
+                        {{#if current}}
+                            <li class="active nav-select-categ"><a href="#">{{number}}<span class="sr-only"></span></a></li>
+                        {{else}}
+                            <li class="nav-select-categ"><a href="#">{{number}}<span class="sr-only"></span></a></li>
+                        {{/if}}
+                    {{/each}}
+                    <li class="nav-last-categ"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </nav>
+        {{/if}}
+        </div>
+    </div>
+</div><!-- row-->

@@ -1,0 +1,75 @@
+html{
+    overflow-y: auto;
+}
+.content{
+    background-color:white;
+}
+/*.pos-header{*/
+/*background-color:#9b58b5;*/
+/**//*background-color:#0080fd;*/
+/**//*background-color:#f38a3c;*/
+/*}*/
+.pos-table-title{
+    margin-left:6%;
+    margin-right:5%;
+    margin-bottom:0px;
+    color:white;
+}
+
+.pos-summary td {
+    border-top: none !important;
+}
+
+.pos-table-title td {
+    border-top: none !important;
+}
+
+.pos-sub-header{
+    margin-left:5%;
+    margin-right:5%;
+}
+
+.nav-pos{
+    margin-bottom:0px;
+}
+
+.nav-user-menu > li.active > a, .nav-user-menu > li.active > a:hover, .nav-user-menu > li.active > a:focus {
+    background-color:white;
+    color: #6d6d6d;
+}
+
+.nav-user-menu li a{
+    color:white;
+}
+
+/* customize size of scrollbar */
+
+::-webkit-scrollbar-track-piece{
+    background-color:#fff;
+    -webkit-border-radius:0;
+}
+::-webkit-scrollbar{
+    width:1%;
+    height:8px;
+}
+/* -webkit-scrollbar --> width value should be "..%" not "..px" */
+::-webkit-scrollbar-thumb{
+    height:50px;
+    background-color:#999;
+    -webkit-border-radius:4px;
+    outline:2px solid #fff;
+    outline-offset:-2px;
+    border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover{
+    height:50px;
+    background-color:#9f9f9f;
+    -webkit-border-radius:4px;
+}
+
+/* ---------------- */
+.scrollable-menu {
+    height: auto;
+    max-height: 400px;
+    overflow-x: hidden;
+}

@@ -1,0 +1,80 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:200%">&times;</span></button>
+            <h4 class="modal-title">POS Settings</h4>
+        </div>
+        <div class="modal-body">
+            {{#if flash.message }}
+                <div class="row" style="margin:5px;">
+                    {{#ifeq flash.type "success"}}
+                        <div class="alert alert-success" role="alert">
+                    {{else}}
+                        {{#ifeq flash.type "danger"}}
+                            <div class="alert alert-danger" role="alert">
+                        {{else}}
+                            <div class="alert" role="alert">
+                        {{/ifeq}}
+                    {{/ifeq}}
+                    {{flash.message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                </div>
+            {{/if}}
+            <div class="row" style="padding:5%">
+                <!--
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="control-label col-sm-4"><strong>Select Company </strong></div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                {{#each comps}}
+                                    <option>{{name}}</option>
+                                {{/each}}
+                            </select>                    
+                        </div>
+                    </div>
+                </form>
+                -->
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="control-label col-sm-4"><strong>Select Cashier </strong></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="select-cashier">
+                                {{#each cashiers}}
+                                    <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>                    
+                        </div>
+                        <div class="control-label col-sm-1"><span></span></div>
+                    </div>
+                </form>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="control-label col-sm-4"><strong>Select Theme </strong></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="select-theme">
+                                <option>Blue</option>
+                                <option>Pink</option>
+                                <option>Lightblue</option>
+                                <option>Orange</option>
+                                <option>Red</option>
+                                <option>Black</option>
+                                <option>Grey</option>
+                            </select>                    
+                        </div>
+                        <div class="control-label col-sm-1"><span></span></div>
+                    </div>
+                </form>
+                <!--<hr/>-->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-backend pull-left">
+                <span class="glyphicon glyphicon-arrow-right"></span> Go to Backend
+            </button>
+            <button type="button" class="btn btn-primary btn-update">Save changes</button>
+            <button type="button" class="btn btn-default btn-cancel">Cancel</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

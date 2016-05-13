@@ -1,0 +1,1 @@
+../static/pos/js/pos.js

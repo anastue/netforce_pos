@@ -1,0 +1,23 @@
+{{#if flash.message }}
+    {{#ifeq flash.type "success"}}
+        <div class="alert alert-success" role="alert">
+    {{else}}
+        {{#ifeq flash.type "danger"}}
+            <div class="alert alert-danger" role="alert">
+        {{else}}
+            <div class="alert" role="alert">
+        {{/ifeq}}
+    {{/ifeq}}
+        {{flash.message}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+{{/if}}
+<div class="row">
+    <!--left-->
+    <div class="col-sm-6">
+        <h1> Retreive Sale </h1>
+    </div>
+    <!--right-->
+    <div class="col-sm-6">
+    </div>
+</div><!-- row-->

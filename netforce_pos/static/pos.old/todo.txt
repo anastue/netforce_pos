@@ -1,0 +1,44 @@
+menu
+    current sale
+        - add
+            - keyboard
+            - ipad
+                - lanscape & partoit
+            - barcode
+
+        - edit qty/price product
+        - discount
+        - customer
+            -add
+            -select
+            -discount from price list for that customer
+        -payment
+            - full -> print
+            - not full -> show list of payment
+        - park
+            - register data to history sale
+    retrieve sale
+        - show park order
+        - maybe show sale order
+            -print
+            -void
+            -copy to sale
+            -edit
+    close register
+        - click and process to backend -> ok
+        - formatCurrency
+        - link according register
+    hot keys
+        - f6 => retrieve sale
+        - f7 => close register
+        - f5 => park
+        - f4 => pay
+todo:
+    - check tax
+        - include
+        - separate
+other:
+    screen
+        - need to support iPad , landscrab, portrait
+bug: 
+    - can not select link of register
